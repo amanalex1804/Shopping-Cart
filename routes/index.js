@@ -22,21 +22,4 @@ router.get('/', function(req, res, next) {
 	});
 });
 
-
-router.get('/user/signup',function(req,res,next){
-	var messages = req.flash('error');
-	res.render('user/signup',{csrfToken : req.csrfToken(), messages :messages ,hasErrors : messages.length>0});
-});
-
-router.post('/user/signup',passport.authenticate('local.signup',{
-	successRedirect : '/profile',
-	failureRedirect : '/user/signup',
-	failureFlash : true
-}));
-
-
-router.get('/profile',function(req,res){
-	res.send("yuyuyu");
-})
-
 module.exports = router;
