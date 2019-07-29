@@ -19,9 +19,9 @@ var userRoutes = require('./routes/user');
 
 var app = express();
 
-var URL = process.env.URL;
 
-mongoose.connect('URL', { useNewUrlParser: true });
+
+mongoose.connect('mongodb+srv://abcd:abcd@zingcluster-vrt2r.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true });
 require('./config/passport');
 
 
