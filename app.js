@@ -19,7 +19,7 @@ var userRoutes = require('./routes/user');
 
 var app = express();
 
-mongoose.connect('mongodb://localhost:27017/shopping');
+mongoose.connect('mongodb://localhost:27017/shopping', { useNewUrlParser: true });
 require('./config/passport');
 
 
@@ -37,7 +37,7 @@ app.use(cookieParser());
 app.use(session({
   secret : 'Zing',
   resave : false , 
-   saveUninitialised : false,
+  saveUninitialized : false,
   store : new MongoStore({mongooseConnection : mongoose.connection}),
   cookie : {maxAge : 180*60*1000}
 }));
@@ -45,6 +45,9 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+// global values
 
 app.use(function(req,res,next){
   res.locals.login = req.isAuthenticated();
